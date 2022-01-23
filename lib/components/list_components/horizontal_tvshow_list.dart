@@ -14,29 +14,32 @@ class HorizontalTvShowList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          margin: kHorizontalListMargin,
-          child: Text(title, style: kHorizontalListTitleStyle),
-        ),
-        const SizedBox(height: 15),
-        Container(
-          height: 225,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 10,
-            itemBuilder: (ctx, i) {
-              final show = list.tvShows[i];
-              return TvShowItem(
-                showId: show.id,
-                showPosterPath: show.posterPath,
-              );
-            },
+    return Padding(
+      padding: kMainColumnBottomPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: kHorizontalListMargin,
+            child: Text(title, style: kHorizontalListTitleStyle),
           ),
-        ),
-      ],
+          const SizedBox(height: 15),
+          Container(
+            height: 225,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (ctx, i) {
+                final show = list.tvShows[i];
+                return TvShowItem(
+                  showId: show.id,
+                  showPosterPath: show.posterPath,
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

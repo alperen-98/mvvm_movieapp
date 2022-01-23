@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/components/detail_screen_components/season_episode_info.dart';
+import 'package:movie_app/constants/decoration.dart';
 import 'package:movie_app/helpers/function_helper.dart';
 import 'package:movie_app/models/tv_show_model/tv_show_detail_model/tv_show_detail.dart';
 import 'date_info.dart';
@@ -21,7 +22,7 @@ class TvShowDetailContent extends StatelessWidget {
             path: showDetail.posterPath!,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: kDetailContentPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

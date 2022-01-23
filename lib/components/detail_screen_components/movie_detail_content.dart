@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/constants/decoration.dart';
 import 'package:movie_app/helpers/function_helper.dart';
-import 'package:movie_app/models/movie_model/movie_detail_model/movie_detail.dart';
 import 'date_info.dart';
 import 'detail_header_image.dart';
 import 'detail_info_tile.dart';
@@ -29,7 +29,7 @@ class MovieDetailContent extends StatelessWidget {
         children: [
           DetailHeaderImage(path: movieBackdropPath),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: kDetailContentPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/constants/colors.dart';
+import 'package:movie_app/constants/decoration.dart';
 import 'package:movie_app/constants/textstyles.dart';
 
 class WatchButton extends StatelessWidget {
@@ -15,7 +16,7 @@ class WatchButton extends StatelessWidget {
         fixedSize: MaterialStateProperty.all(Size.fromWidth(90)),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100.0),
+            borderRadius: kWatchButtonBorderRadius,
           ),
         ),
       ),

@@ -24,13 +24,21 @@ class TvShowProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  int _pageNumber = 1;
+
+  int get pageNumber => _pageNumber;
+
+  void incrementPageNumber() {
+    _pageNumber++;
+  }
+
   Future<void> fetchTvShowList() async {
     final url =
-        "${NetworkData.MovieDbUrl}tv/popular?api_key=${NetworkData.ApiKey}&language=en-US&page=1";
+        "${NetworkData.MovieDbUrl}tv/popular?api_key=${NetworkData.ApiKey}&language=en-US&page=$pageNumber";
     try {
       tvShowState = TvShowState.LOADING;
-      var fetchedList = await NetworkHelper().getData(url);
-      _tvShows = TvShowList.fromJson(fetchedList);
+      var data = await NetworkHelper().getData(url);
+      _tvShows = TvShowList.fromJson(data);
       tvShowState = TvShowState.OK;
       notifyListeners();
     } catch (Exception) {
