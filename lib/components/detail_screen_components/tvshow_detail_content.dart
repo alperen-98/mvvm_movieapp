@@ -19,7 +19,7 @@ class TvShowDetailContent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           DetailHeaderImage(
-            path: showDetail.posterPath!,
+            path: showDetail.backdropPath!,
           ),
           Padding(
             padding: kDetailContentPadding,

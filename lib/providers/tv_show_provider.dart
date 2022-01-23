@@ -7,9 +7,11 @@ import 'package:movie_app/models/tv_show_model/tv_show_list.dart';
 enum TvShowState { OK, LOADING, ERROR }
 
 class TvShowProvider with ChangeNotifier {
-  late TvShowList _tvShows;
+  late TvShowList _tvShowList;
 
-  TvShowList get tvShows => _tvShows;
+  TvShowList get tvShowList => _tvShowList;
+
+  int get listCount => _tvShowList.tvShows.length;
 
   TvShowProvider() {
     fetchTvShowList();
@@ -38,11 +40,33 @@ class TvShowProvider with ChangeNotifier {
     try {
       tvShowState = TvShowState.LOADING;
       var data = await NetworkHelper().getData(url);
-      _tvShows = TvShowList.fromJson(data);
+      _tvShowList = TvShowList.fromJson(data);
       tvShowState = TvShowState.OK;
-      notifyListeners();
     } catch (Exception) {
       tvShowState = TvShowState.ERROR;
+    }
+  }
+
+  Future<void> fetchMoreTvShows() async {
+    // it should be => pageNumber < _tvShowList.totalPages
+    // however the api only allows up to 500th number
+    if (pageNumber < 500) {
+      print('more shows are coming');
+      try {
+        incrementPageNumber();
+        final url =
+            "${NetworkData.MovieDbUrl}tv/popular?api_key=${NetworkData.ApiKey}&language=en-US&page=$pageNumber";
+        var data = await NetworkHelper().getData(url);
+        var newShowList = TvShowList.fromJson(data);
+        _tvShowList.page = newShowList.page;
+        newShowList.tvShows.forEach((show) {
+          _tvShowList.tvShows.add(show);
+        });
+        print('new length = ${listCount}');
+        notifyListeners();
+      } catch (exception) {
+        throw 'Error';
+      }
     }
   }
 

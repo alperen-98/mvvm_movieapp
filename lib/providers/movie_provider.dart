@@ -8,9 +8,9 @@ import 'package:movie_app/models/movie_model/movie_list.dart';
 enum MovieState { OK, LOADING, ERROR }
 
 class MovieProvider with ChangeNotifier {
-  late MovieList _movies;
+  late MovieList _movieList;
 
-  MovieList get movies => _movies;
+  MovieList get movies => _movieList;
 
   MovieProvider() {
     fetchMovies();
@@ -31,7 +31,7 @@ class MovieProvider with ChangeNotifier {
     try {
       movieState = MovieState.LOADING;
       var fetchedMovies = await NetworkHelper().getData(url);
-      _movies = MovieList.fromJson(fetchedMovies);
+      _movieList = MovieList.fromJson(fetchedMovies);
       movieState = MovieState.OK;
       notifyListeners();
     } catch (Exception) {

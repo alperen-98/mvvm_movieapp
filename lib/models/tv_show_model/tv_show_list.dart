@@ -1,15 +1,15 @@
 import 'package:movie_app/models/tv_show_model/tv_show.dart';
 
 class TvShowList {
-  const TvShowList({
+  TvShowList({
     required this.page,
     required this.tvShows,
     required this.totalPages,
     required this.totalResults,
   });
 
-  final int page;
-  final List<TvShow> tvShows;
+  int page;
+  List<TvShow> tvShows;
   final int totalPages;
   final int totalResults;
 
