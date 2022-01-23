@@ -27,6 +27,14 @@ class MovieProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  int _pageNumber = 1;
+
+  int get pageNumber => _pageNumber;
+
+  void incrementPageNumber() {
+    _pageNumber++;
+  }
+
   Future<void> fetchMovies() async {
     final url =
         '${NetworkData.MovieDbUrl}movie/popular?api_key=${NetworkData.ApiKey}&language=en-US&page=1';
@@ -38,6 +46,29 @@ class MovieProvider with ChangeNotifier {
       notifyListeners();
     } catch (Exception) {
       movieState = MovieState.ERROR;
+    }
+  }
+
+  Future<void> fetchMoreMovies() async {
+    // it should be => pageNumber < _movieList.totalPages
+    // however the api only allows up to 500th number
+    if (pageNumber < 500) {
+      print('more movies are coming');
+      try {
+        incrementPageNumber();
+        final url =
+            "${NetworkData.MovieDbUrl}movie/popular?api_key=${NetworkData.ApiKey}&language=en-US&page=$pageNumber";
+        var data = await NetworkHelper().getData(url);
+        var newMovieList = MovieList.fromJson(data);
+        _movieList.page = newMovieList.page;
+        newMovieList.movies.forEach((movie) {
+          _movieList.movies.add(movie);
+        });
+        print('new length = ${movieListCount}');
+        notifyListeners();
+      } catch (exception) {
+        throw 'Error';
+      }
     }
   }
 

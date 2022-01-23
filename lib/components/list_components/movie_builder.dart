@@ -20,6 +20,10 @@ class MovieBuilder extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: provider.movieListCount,
             itemBuilder: (ctx, i) {
+              // fetch more movies before user comes to an end
+              if (i + 3 == provider.movieListCount) {
+                provider.fetchMoreMovies();
+              }
               final movie = provider.movieList.movies[i];
               return _MovieItem(
                 movieId: movie.id,
