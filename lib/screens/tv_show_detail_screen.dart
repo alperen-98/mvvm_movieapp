@@ -1,44 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/components/detail_screen_components/date_info.dart';
-import 'package:movie_app/components/detail_screen_components/detail_header_image.dart';
-import 'package:movie_app/components/detail_screen_components/movie_show_description.dart';
-import 'package:movie_app/components/detail_screen_components/rate_info.dart';
-import 'package:movie_app/components/detail_screen_components/season_episode_info.dart';
+import 'package:movie_app/components/detail_screen_components/tvshow_detail_content.dart';
+import 'package:movie_app/models/tv_show_model/tv_show_detail_model/tv_show_detail.dart';
+import 'package:movie_app/providers/tv_show_provider.dart';
+import 'package:movie_app/widgets/error_widgets/page_error_widget.dart';
+import 'package:movie_app/widgets/loading_indicator.dart';
+import 'package:provider/provider.dart';
 
 class TvShowDetailScreen extends StatelessWidget {
+  const TvShowDetailScreen({required this.id});
+  final int id;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         top: false,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              DetailHeaderImage(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RateInfo(
-                        title: 'Stranger Things',
-                        category: 'Tv Series',
-                        rate: 9.4),
-                    const SizedBox(height: 40),
-                    SeasonEpisodeInfo(season: 4, episodes: 28),
-                    const SizedBox(height: 20),
-                    DateInfo(title: 'First Air Date', date: '07.10.2014'),
-                    const SizedBox(height: 20),
-                    MovieShowDescription(
-                        description:
-                            "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \"meta-human\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash."),
-                  ],
-                ),
-              ),
-            ],
-          ),
+        child: FutureBuilder<TvShowDetail>(
+          future: context.read<TvShowProvider>().getTvShowById(id),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting)
+              return LoadingIndicator();
+            else if (snapshot.hasError)
+              return PageErrorWidget();
+            else
+              return TvShowDetailContent(
+                showDetail: snapshot.data!,
+              );
+          },
         ),
       ),
     );

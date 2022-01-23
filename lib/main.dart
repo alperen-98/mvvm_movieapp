@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'constants/colors.dart';
 
 void main() {
+  // device remains in portrait mode
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -28,8 +29,12 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Movie App',
-        theme: ThemeData.dark().copyWith(
+        theme: ThemeData(
           scaffoldBackgroundColor: kScaffoldBackgroundColor,
+          primarySwatch: Colors.red,
+          progressIndicatorTheme: const ProgressIndicatorThemeData(
+            linearTrackColor: kLowOpacityLinearTrackColor,
+          ),
         ),
         home: HomeScreen(),
       ),

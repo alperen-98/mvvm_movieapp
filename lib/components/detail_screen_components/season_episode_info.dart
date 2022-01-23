@@ -17,7 +17,7 @@ class SeasonEpisodeInfo extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Seasons'),
+            const Text('Seasons', style: kDetailSubtitleTextStyle),
             const SizedBox(height: 6),
             Text('$season', style: kTitleTextStyle),
           ],
@@ -25,7 +25,7 @@ class SeasonEpisodeInfo extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const Text('Total Episodes'),
+            const Text('Total Episodes', style: kDetailSubtitleTextStyle),
             const SizedBox(height: 6),
             Text(
               '$episodes',
