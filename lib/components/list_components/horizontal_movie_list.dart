@@ -40,7 +40,7 @@ class _MovieBuilder extends StatelessWidget {
         if (provider.movieState == MovieState.OK) {
           return ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 10,
+            itemCount: provider.movieListCount,
             itemBuilder: (ctx, i) {
               final movie = provider.movies.movies[i];
               return MovieItem(

@@ -12,6 +12,8 @@ class MovieProvider with ChangeNotifier {
 
   MovieList get movies => _movieList;
 
+  int get movieListCount => _movieList.movies.length;
+
   MovieProvider() {
     fetchMovies();
   }
