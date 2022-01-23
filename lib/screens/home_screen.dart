@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/components/list_components/horizontal_movie_list.dart';
-import 'package:movie_app/components/list_components/horizontal_tvshow_list.dart';
-import 'package:movie_app/components/latest_content.dart';
+import 'package:movie_app/components/list_components/horizontal_list_builder.dart';
+import 'package:movie_app/components/latest_content/latest_content.dart';
+import 'package:movie_app/components/list_components/movie_builder.dart';
+import 'package:movie_app/components/list_components/tv_show_builder.dart';
 import 'package:movie_app/constants/decoration.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -21,11 +22,15 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 // popular tv shows
-                HorizontalTvShowList(title: 'Popular TV Shows'),
+                HorizontalListBuilder(
+                  title: 'Popular TV Shows',
+                  listBuilder: TvShowBuilder(),
+                ),
 
                 // popular movies
-                HorizontalMovieList(
+                HorizontalListBuilder(
                   title: 'Popular Movies',
+                  listBuilder: MovieBuilder(),
                 ),
               ],
             ),

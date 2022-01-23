@@ -10,10 +10,6 @@ void main() {
     borderColorTest(functionHelper);
     dateTest(functionHelper);
   });
-
-  //testWidgets('Testing FunctionHelper class', (WidgetTester tester) async {
-
-  //});
 }
 
 void dateTest(FunctionHelper functions) {
