@@ -10,7 +10,7 @@ enum MovieState { OK, LOADING, ERROR }
 class MovieProvider with ChangeNotifier {
   late MovieList _movieList;
 
-  MovieList get movies => _movieList;
+  MovieList get movieList => _movieList;
 
   int get movieListCount => _movieList.movies.length;
 

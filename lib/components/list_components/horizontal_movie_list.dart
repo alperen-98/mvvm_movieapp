@@ -42,7 +42,7 @@ class _MovieBuilder extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: provider.movieListCount,
             itemBuilder: (ctx, i) {
-              final movie = provider.movies.movies[i];
+              final movie = provider.movieList.movies[i];
               return MovieItem(
                 movieId: movie.id,
                 moviePosterPath: movie.posterPath,
