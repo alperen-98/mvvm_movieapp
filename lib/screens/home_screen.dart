@@ -27,6 +27,8 @@ class HomeScreen extends StatelessWidget {
                   listBuilder: TvShowBuilder(),
                 ),
 
+                const SizedBox(height: 20),
+
                 // popular movies
                 HorizontalListBuilder(
                   title: 'Popular Movies',
