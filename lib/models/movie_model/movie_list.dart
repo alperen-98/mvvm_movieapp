@@ -1,15 +1,15 @@
 import 'movie_result.dart';
 
 class MovieList {
-  const MovieList({
+  MovieList({
     required this.page,
     required this.movies,
     required this.totalPages,
     required this.totalResults,
   });
 
-  final int page;
-  final List<Movie> movies;
+  int page;
+  List<Movie> movies;
   final int totalPages;
   final int totalResults;
 
