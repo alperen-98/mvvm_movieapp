@@ -34,4 +34,14 @@ class FunctionHelper {
       return kGreenColor;
     }
   }
+
+  String insertIdInUrl(String url, String id) {
+    int index = url.indexOf('/'); // => 2
+
+    String urlWithId = url.substring(0, index + 1) + id; // => tv/85552
+
+    url = url.substring(index + 1, url.length);
+
+    return urlWithId + url;
+  }
 }
